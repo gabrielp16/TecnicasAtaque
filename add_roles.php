@@ -8,7 +8,7 @@
 <html>
 
 <head>
-    <title>Agregar roles</title>
+    <title>Agregar roles | Gabriel Peña</title>
 </head>
 
 <body>

@@ -8,7 +8,7 @@
 <html>
 
 <head>
-    <title>Agregar un producto</title>
+    <title>Agregar un producto | Gabriel Peña</title>
 </head>
 
 <body>

@@ -355,3 +355,32 @@ table.table .avatar {
 .hide-class {
 	display: none;
 }
+.user-detail label{
+	color: #435d7d;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+    width: 100%;
+    display: inline;
+}
+
+.user-detail p{
+	color: #435d7d;
+    font-size: 13px;
+    margin: 0 0 15px;
+}
+
+.user-detail h3{
+	color: #435d7d;
+    font-size: 20px;
+    margin: 0 0 15px;
+    font-weight: bold;
+    text-decoration: overline;
+}
+
+.user-detail a {
+    color: green;
+    width: 100%;
+    display: block;
+    font-size: 12px;
+}

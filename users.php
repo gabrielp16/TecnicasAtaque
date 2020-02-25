@@ -18,7 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lista de roles</title>
+    <title>Lista de roles | Gabriel Peña</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -55,7 +55,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th id="name_header">Nombre</th>                        
+                        <th id="name_header">Nombre</th>
                         <th id="mail_header">Correo</th>
                         <th id="username_header">Usuario</th>
                         <th id="role_header">Rol</th>
@@ -89,8 +89,13 @@
                             <a href="edit_user.php?id=<?php echo $res[id]?>" class="edit">
                                 <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i>
                             </a>
-                            <a href="block_user.php?id_user=<?php echo $res[id]?>&name_user=<?php echo $res[name]?>&active=<?php echo $res[active]?>" class="<?php echo $class?>">
-                                <i class="material-icons" data-toggle="tooltip" title="<?php echo $text?>"><?php echo $icon?></i>
+                            <a href="block_user.php?id_user=<?php echo $res[id]?>&name_user=<?php echo $res[name]?>&active=<?php echo $res[active]?>"
+                                class="<?php echo $class?>">
+                                <i class="material-icons" data-toggle="tooltip"
+                                    title="<?php echo $text?>"><?php echo $icon?></i>
+                            </a>
+                            <a href="user_detail.php?id=<?php echo $res[id]?>" class="datail">
+                                <i class="material-icons" data-toggle="tooltip" title="Ir al detalle">input</i>
                             </a>
                         </td>
                     </tr>
