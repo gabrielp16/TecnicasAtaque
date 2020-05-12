@@ -8,7 +8,7 @@
 <html>
 
 <head>
-    <title>Agregar roles | Gabriel Peña</title>
+    <title>Agregar roles | Gabriel Peña & Manuel Albarran</title>
 </head>
 
 <body>

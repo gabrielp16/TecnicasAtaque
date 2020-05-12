@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crear usuario | Gabriel Peña</title>
+    <title>Crear usuario | Gabriel Peña & Manuel Albarran</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -31,7 +31,7 @@
 			if($user == "" || $pass == "" || $name == "" || $email == "" || $role == "") {
 	?>
 
-    
+
     <form id="myModal" name="form1" method="post" action="">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
@@ -108,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <select name="role" class="form-control" id="role-selector">
-                        <?php
+                            <?php
                             while($role = mysqli_fetch_assoc($roles)) {
                                 echo "<option value='".$role['name']."'>".$role['name']."</option>";
                             }

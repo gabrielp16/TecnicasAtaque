@@ -8,7 +8,7 @@
 <html>
 
 <head>
-    <title>Buscar productos | Gabriel Peña</title>
+    <title>Buscar productos | Gabriel Peña & Manuel Albarran</title>
 </head>
 
 <body>

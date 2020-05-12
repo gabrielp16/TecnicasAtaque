@@ -8,7 +8,7 @@
 <html>
 
 <head>
-    <title>Agregar un producto | Gabriel Peña</title>
+    <title>Agregar un producto | Gabriel Peña & Manuel Albarran</title>
 </head>
 
 <body>
