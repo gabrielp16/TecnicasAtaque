@@ -1,7 +1,7 @@
 # TecnicasAtaque
 Repositorio para Tecnicas de ataque
 
-## Productos
+### Productos
 1. Listar
 2. Edita
 3. Crea
@@ -9,18 +9,18 @@ Repositorio para Tecnicas de ataque
 5. Ordenar
 6. Buscar
 
-## Roles
+### Roles
 1. Listar
 2. Editar
 3. Crear
 4. Eliminar
 5. Asignar
 
-## Auditar
+### Auditar
 1. Listar
 2. Buscar
 
-## Usuarios
+### Usuarios
 
 1. Listar
 2. Editar
