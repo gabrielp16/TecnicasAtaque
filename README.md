@@ -1,5 +1,5 @@
-# TecnicasAtaque
-Repositorio para Tecnicas de ataque
+# Proyecto medicamentos
+Repositorio para el proyecto de medicamentos
 
 ### Productos
 1. Listar
