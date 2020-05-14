@@ -8,8 +8,25 @@
 
 <?php
 	include_once("connection.php");
-    $result = mysqli_query($mysqli, "SELECT * FROM products WHERE users_id=".$_SESSION['id']." ORDER BY id DESC");
     $users = mysqli_query($mysqli, "SELECT * FROM users WHERE id=".$_SESSION['id']." ORDER BY id DESC");    
+
+    $search = $_GET["search"];
+    $search_selector = $_GET["search_selector"];
+    $order_type = $_GET['order_type'];
+    $order = $_GET['order'];
+
+    if(empty($search_selector)){
+        $search_selector = 'products.name';
+    }
+    if(empty($order_type)){
+        $order_type = 'id';
+    }
+    if(empty($order)){
+        $order = 'DESC';
+    }
+
+    $result = mysqli_query($mysqli, "SELECT products.*, users.id AS userId FROM products INNER JOIN users ON products.users_id = users.id WHERE $search_selector LIKE '$search%' and users_id=".$_SESSION['id']." ORDER BY ".$order_type." ".$order); 
+
 
     while($user = mysqli_fetch_assoc($users)) {
         if ($user['role'] == 'cliente'): 
@@ -59,6 +76,9 @@
                             <i class="material-icons">home</i> <span>Inicio</span>
                         </a>
                     </div>
+                    <div class="col-12">
+                        <?php include("search-component.php");?>
+                    </div>
                 </div>
             </div>
             <table class="table table-striped table-hover products-table">
@@ -68,6 +88,7 @@
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Fecha de vencimiento <span>(AAAA-MM-DD)</span></th>
+                        <th>Estado</th>
                         <th class="<?php echo $classHide ?>">Accion</th>
                     </tr>
                 </thead>
@@ -77,34 +98,25 @@
 						while($res = mysqli_fetch_assoc($result)) {
 					?>
                     <?php
-                        $today = new DateTime();
-                        $today = $today->format('Y-m-d');
-
-                        $expiration_date = new DateTime($res['expiration_date']);
-                        $expiration_date = $expiration_date->format('Y-m-d');
-
-                        $soon = new DateTime();
-                        $soon->add(new DateInterval('P8D'));
-                        $soon = $soon->format('Y-m-d');
-                        
-                        if($expiration_date < $today ){
-                            $state = 'Vencido';
-                            $stateClass = 'expired';
-                        }elseif ($expiration_date <= $soon){
-                            $state = 'Proximo a vencerse';
-                            $stateClass = 'soon-expired';
-                        }else{
-                            $state = 'Al dia';
-                            $stateClass = 'not-expired';
-                        } 
-                        
-                        $price = $res['price'];
+                        $stateClass = $res['expiration_status'];
+                        switch ($stateClass) {
+                            case 'expired':
+                                $state = 'Expirado'; 
+                                break;
+                            case 'soon-expired':
+                                $state = 'Proximo a vencerse'; 
+                                break;                            
+                            default:
+                                $state = 'Al dia'; 
+                                break;
+                        }
                     ?>
                     <tr class="product-item <?php echo $stateClass ?>">
                         <?php echo "<td>".$res['name']."</td>"?>
                         <?php echo "<td>".$res['qty']."</td>"?>
-                        <?php echo "<td>$".$price."</td>"?>
-                        <?php echo "<td>".$expiration_date.' ( '.$state.' ) '."</td>"?>
+                        <?php echo "<td>$".$res['price']."</td>"?>
+                        <?php echo "<td>".$res['expiration_date']."<i class='alerta material-icons'>warning</i></td>"?>
+                        <?php echo "<td>".$state."</td>"?>
 
                         <td class="<?php echo $classHide ?>">
                             <a href="edit.php?id=<?php echo $res[id]?>" class="edit">
@@ -138,11 +150,11 @@
                         </div>
                         <div class="form-group">
                             <label>Cantidad</label>
-                            <input type="text" class="form-control" name="qty" required>
+                            <input type="number" class="form-control" name="qty" required>
                         </div>
                         <div class="form-group">
                             <label>Precio</label>
-                            <input type="text" class="form-control" name="price" required>
+                            <input type="number" class="form-control" name="price" required>
                         </div>
                         <div class="form-group">
                             <label>Fecha de vencimiento (YYYY-MM-DD)</label>

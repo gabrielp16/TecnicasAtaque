@@ -36,13 +36,31 @@ if(isset($_POST['update']))
         if(empty($expiration_date)) {
 			echo "<font color='red'>El campo Fecha de expiracion esta vacio</font><br/>";
 		}	
-	} else {	
-        $result = mysqli_query($mysqli, "UPDATE products SET name='$name', qty='$qty', price='$price',expiration_date='$expiration_date' WHERE id=$id");
+	} else {
+        $today = new DateTime();
+        $today = $today->format('Y-m-d');
+
+        $expiration_date = new DateTime($expiration_date);
+        $expiration_date = $expiration_date->format('Y-m-d');
+
+        $soon = new DateTime();
+        $soon->add(new DateInterval('P8D'));
+        $soon = $soon->format('Y-m-d');
+        
+        if($expiration_date < $today ){
+            $expiration_status = 'expired';
+        }elseif ($expiration_date <= $soon){
+            $expiration_status = 'soon-expired';
+        }else{
+            $expiration_status = 'not-expired';
+        }
+            	
+        $result = mysqli_query($mysqli, "UPDATE products SET name='$name', qty='$qty', price='$price', expiration_date='$expiration_date', expiration_status='$expiration_status' WHERE id=$id");
         
         $description = "Se editó el producto: ".$name;
         $result2 = mysqli_query($mysqli, "INSERT INTO audit_process_tracking (action, date, user_id, description) VALUES('Update service', CURRENT_TIMESTAMP, '$usersId', '$description')");
 
-		header("Location: view.php");
+		header("Location: view.php?search=&search_selector=products.name&order_type=id&order=DESC");
 	}
 }
 ?>
@@ -81,7 +99,8 @@ if(isset($_POST['update']))
                         <a href="logout.php" class="btn btn-danger">
                             <i class="material-icons">exit_to_app</i> <span>Salir</span>
                         </a>
-                        <a href="view.php" class="btn btn-success">
+                        <a href="view.php?search=&search_selector=products.name&order_type=id&order=DESC"
+                            class="btn btn-success">
                             <i class="material-icons">remove_red_eye</i> <span>Ver productos</span>
                         </a>
                         <a href="index.php" class="btn btn-success">
@@ -110,10 +129,10 @@ if(isset($_POST['update']))
                                 <input type="text" class="form-control" name="name" value="<?php echo $res['name'];?>">
                             </td>
                             <td>
-                                <input type="text" class="form-control" name="qty" value="<?php echo $res['qty'];?>">
+                                <input type="number" class="form-control" name="qty" value="<?php echo $res['qty'];?>">
                             </td>
                             <td>
-                                <input type="text" class="form-control" name="price"
+                                <input type="number" class="form-control" name="price"
                                     value="<?php echo $res['price'];?>">
                             </td>
                             <td>

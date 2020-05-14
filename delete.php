@@ -18,5 +18,5 @@
 	$result2 = mysqli_query($mysqli, "INSERT INTO audit_process_tracking (action, date, user_id, description) VALUES('Delete service', CURRENT_TIMESTAMP, '$usersId', '$description')");
 
 		
-	header("Location:view.php");
+	header("Location:view.php?search=&search_selector=products.name&order_type=id&order=DESC");
 ?>

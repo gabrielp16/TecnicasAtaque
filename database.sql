@@ -50,7 +50,8 @@ CREATE TABLE `products`
      `name`     VARCHAR (100) NOT NULL, 
      `qty`      INT (5) NOT NULL, 
      `price`    INT (10) NOT NULL,
-     `expiration_date`     VARCHAR (100) NOT NULL, 
+     `expiration_date`     VARCHAR (10) NOT NULL,
+     `expiration_status`   VARCHAR (15) NOT NULL, 
      `users_id` INT (11) NOT NULL, 
      PRIMARY KEY (`id`), 
      CONSTRAINT fk_products_1 FOREIGN KEY (users_id) REFERENCES users (id) 
@@ -62,11 +63,13 @@ INSERT INTO products
              `qty`, 
              `price`, 
              `expiration_date`,
+             `expiration_status`,
              `users_id`) 
 VALUES      ( 'Producto 1', 
               100, 
               2000,
               '2020-10-20',
+              'not-expired',
               1 ); 
 
 INSERT INTO products 
@@ -74,11 +77,13 @@ INSERT INTO products
              `qty`, 
              `price`, 
              `expiration_date`,
+             `expiration_status`,
              `users_id`) 
 VALUES      ( 'Producto 2', 
               150, 
               3000,
               '2020-10-20',
+              'not-expired',
               1 ); 
 
 CREATE TABLE `roles` 

@@ -18,8 +18,10 @@
 		if(isset($_POST['submit_search'])) {	
 			$search_selector = $_POST['search-selector'];
 			$search = $_POST['search'];
+			$order_type = $_POST['order-type-selector'];
+			$order = $_POST['order-selector'];
 				
-			header('Location: search-list.php?search='.$search.'&search_selector='.$search_selector);
+			header('Location: view.php?search='.$search.'&search_selector='.$search_selector.'&order_type='.$order_type.'&order='.$order);
 		}
 	?>
 </body>
