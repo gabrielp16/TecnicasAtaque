@@ -49,22 +49,7 @@
                         <a href="index.php" class="btn btn-success">
                             <i class="material-icons">home</i> <span>Inicio</span>
                         </a>
-                        <form class="form-inline" action="search.php" method="post" name="form1">
-                            <div class="input-group">
-                                <input class="form-control" type="search" name="search" placeholder="Buscar"
-                                    aria-label="Search">
-                                <select name="search-selector" class="form-control" id="search-selector">
-                                    <option value="products.name">Producto</option>
-                                    <option value="products.qty">Cantidad</option>
-                                    <option value="products.price">Precio</option>
-                                    <option value="users.name">Usuario</option>
-                                    <option value="users.email">Correo</option>
-                                    <option value="users.role">Rol</option>
-                                </select>
-                                <button class="btn btn btn-success my-0" type="submit"
-                                    name="submit_search">Buscar</button>
-                            </div>
-                        </form>
+                        <?php>include("search-component.php");?>
                     </div>
                 </div>
             </div>

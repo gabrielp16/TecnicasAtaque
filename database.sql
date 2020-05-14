@@ -50,7 +50,8 @@ CREATE TABLE `products`
      `name`     VARCHAR (100) NOT NULL, 
      `qty`      INT (5) NOT NULL, 
      `price`    INT (10) NOT NULL,
-     `expiration_date`     VARCHAR (100) NOT NULL, 
+     `expiration_date`     VARCHAR (10) NOT NULL,
+     `expiration_status`   VARCHAR (15) NOT NULL, 
      `users_id` INT (11) NOT NULL, 
      PRIMARY KEY (`id`), 
      CONSTRAINT fk_products_1 FOREIGN KEY (users_id) REFERENCES users (id) 
@@ -62,11 +63,13 @@ INSERT INTO products
              `qty`, 
              `price`, 
              `expiration_date`,
+             `expiration_status`,
              `users_id`) 
 VALUES      ( 'Producto 1', 
               100, 
               2000,
               '2020-10-20',
+              'not-expired',
               1 ); 
 
 INSERT INTO products 
@@ -74,28 +77,34 @@ INSERT INTO products
              `qty`, 
              `price`, 
              `expiration_date`,
+             `expiration_status`,
              `users_id`) 
 VALUES      ( 'Producto 2', 
               150, 
               3000,
               '2020-10-20',
+              'not-expired',
               1 ); 
 
 CREATE TABLE `roles` 
   ( 
      `id`   INT (11) NOT NULL auto_increment, 
      `name` VARCHAR (100) NOT NULL, 
+     `permission_products` BIT NOT NULL, 
+     `permission_roles` BIT NOT NULL, 
+     `permission_audit` BIT NOT NULL, 
+     `permission_users` BIT NOT NULL, 
      PRIMARY KEY (`id`) 
   ) 
 engine = innodb; 
 
 INSERT INTO roles 
-            (`name`) 
-VALUES      ( 'administrador' ); 
+            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+VALUES      ( 'administrador',1, 1, 1, 1); 
 
 INSERT INTO roles 
-            (`name`) 
-VALUES      ( 'cliente' ); 
+            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+VALUES      ( 'cliente',1, 1, 0, 0); 
 
 CREATE TABLE `users_roles` 
   ( 
