@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container audit-list">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -51,15 +51,17 @@
                         </a>
                         <form class="form-inline" action="audit.php" method="post" name="form1">
                             <div class="input-group">
-                                <input class="form-control" type="search" name="search" placeholder="Buscar" aria-label="Search"> 
+                                <input class="form-control" type="search" name="search" placeholder="Buscar"
+                                    aria-label="Search">
                                 <select name="search-selector" class="form-control" id="search-selector">
                                     <option value="name">Nombre</option>
                                     <option value="username">Usuario</option>
                                     <option value="action">Acción</option>
                                     <option value="email">Correo</option>
                                     <option value="role">Rol</option>
-                                </select>                                
-                                <button class="btn btn btn-success my-0" type="submit" name="submit_audit">Buscar</button>
+                                </select>
+                                <button class="btn btn btn-success my-0" type="submit"
+                                    name="submit_audit">Buscar</button>
                             </div>
                         </form>
                     </div>
@@ -68,7 +70,7 @@
             <table class="table table-striped table-hover actions">
                 <thead>
                     <tr>
-                        <th id="name">Nombre</th>                        
+                        <th id="name">Nombre</th>
                         <th id="action">Acción</th>
                         <th id="date">Fecha</th>
                         <th id="description">Descripción</th>
@@ -81,7 +83,7 @@
                     <?php
 						while($res = mysqli_fetch_assoc($result)) {
 					?>
-                    <tr>
+                    <tr class="font-audit">
                         <?php echo "<td>".$res['name']."</td>"?>
                         <?php echo "<td>".$res['action']."</td>"?>
                         <?php echo "<td>".$res['date']."</td>"?>

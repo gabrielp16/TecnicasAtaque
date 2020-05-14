@@ -41,7 +41,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container product-list">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -67,7 +67,7 @@
                         <th>Nombre</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
-                        <th>Fecha de vencimiento (YYYY-MM-DD)</th>
+                        <th>Fecha de vencimiento <span>(AAAA-MM-DD)</span></th>
                         <th class="<?php echo $classHide ?>">Accion</th>
                     </tr>
                 </thead>
@@ -97,11 +97,13 @@
                             $state = 'Al dia';
                             $stateClass = 'not-expired';
                         } 
+                        
+                        $price = $res['price'];
                     ?>
-                    <tr class="<?php echo $stateClass ?>">
+                    <tr class="product-item <?php echo $stateClass ?>">
                         <?php echo "<td>".$res['name']."</td>"?>
                         <?php echo "<td>".$res['qty']."</td>"?>
-                        <?php echo "<td>".$res['price']."</td>"?>
+                        <?php echo "<td>$".$price."</td>"?>
                         <?php echo "<td>".$expiration_date.' ( '.$state.' ) '."</td>"?>
 
                         <td class="<?php echo $classHide ?>">

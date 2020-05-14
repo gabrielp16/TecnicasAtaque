@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container users-list">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -78,7 +78,7 @@
                                 $text = 'Activar';
                             }
 					?>
-                    <tr>
+                    <tr class="user-item">
                         <?php echo "<td>".$res['name']."</td>"?>
                         <?php echo "<td>".$res['email']."</td>"?>
                         <?php echo "<td>".$res['username']."</td>"?>
