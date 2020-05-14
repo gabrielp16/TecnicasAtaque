@@ -56,7 +56,7 @@ if(isset($_POST['update']))
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Lista de servicios</h2>
+                        <h2>Lista de producto</h2>
                     </div>
                     <div class="col-sm-6">
                         <a href="logout.php" class="btn btn-danger">
@@ -75,7 +75,7 @@ if(isset($_POST['update']))
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th id="name_header">Nombre</th>                            
+                            <th id="name_header">Nombre</th>
                             <th id="action_header">Accion</th>
                         </tr>
                     </thead>

@@ -40,7 +40,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>Búsqueda de prductos</h2>
+                        <h2>Búsqueda de productos</h2>
                     </div>
                     <div class="col-sm-8">
                         <a href="logout.php" class="btn btn-danger">
@@ -54,7 +54,7 @@
                                 <input class="form-control" type="search" name="search" placeholder="Buscar"
                                     aria-label="Search">
                                 <select name="search-selector" class="form-control" id="search-selector">
-                                    <option value="products.name">Servicio</option>
+                                    <option value="products.name">Producto</option>
                                     <option value="products.qty">Cantidad</option>
                                     <option value="products.price">Precio</option>
                                     <option value="users.name">Usuario</option>
@@ -71,7 +71,7 @@
             <table class="table table-striped table-hover actions">
                 <thead>
                     <tr>
-                        <th id="name">Nombre del servicio</th>
+                        <th id="name">Nombre del producto</th>
                         <th id="qty">Cantidad</th>
                         <th id="price">Precio</th>
                         <th id="user">Nombre del usuario</th>

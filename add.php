@@ -24,7 +24,7 @@
 		
 			$result = mysqli_query($mysqli, "INSERT INTO products (name, qty, price,expiration_date, users_id) VALUES('$name','$qty','$price', '$expiration_date', '$usersId')");
 			
-			$description = "Se agregó el servicio: ".$name;
+			$description = "Se agregó el producto: ".$name;
 			$result2 = mysqli_query($mysqli, "INSERT INTO audit_process_tracking (action, date, user_id, description) VALUES('Add service', CURRENT_TIMESTAMP, '$usersId', '$description')");
 			
 			header('Location: view.php');

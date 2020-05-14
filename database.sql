@@ -139,7 +139,7 @@ INSERT INTO audit_process_tracking
 VALUES      ( 'Add service', 
               CURRENT_TIMESTAMP, 
               1, 
-              'Se agregó servicio: Producto 1' ); 
+              'Se agregó Producto: Producto 1' ); 
 
 INSERT INTO audit_process_tracking 
             (`action`, 
@@ -149,7 +149,7 @@ INSERT INTO audit_process_tracking
 VALUES      ( 'Add service', 
               CURRENT_TIMESTAMP, 
               1, 
-              'Se agregó servicio: Producto 2' ); 
+              'Se agregó Producto: Producto 2' ); 
 
 INSERT INTO audit_process_tracking 
             (`action`, 

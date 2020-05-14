@@ -75,7 +75,7 @@ if(isset($_POST['update']))
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Lista de servicios</h2>
+                        <h2>Lista de producto</h2>
                     </div>
                     <div class="col-sm-6">
                         <a href="logout.php" class="btn btn-danger">

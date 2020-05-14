@@ -72,7 +72,7 @@ if(isset($_POST['update']))
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Lista de servicios</h2>
+                        <h2>Lista de producto</h2>
                     </div>
                     <div class="col-sm-6">
                         <a href="logout.php" class="btn btn-danger">
@@ -91,10 +91,10 @@ if(isset($_POST['update']))
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th id="name_header">Nombre</th> 
-                            <th id="email_header">Correo</th> 
-                            <th id="username_header">Usuario</th> 
-                            <th id="role_header">Rol</th>                           
+                            <th id="name_header">Nombre</th>
+                            <th id="email_header">Correo</th>
+                            <th id="username_header">Usuario</th>
+                            <th id="role_header">Rol</th>
                             <th id="action_header">Accion</th>
                         </tr>
                     </thead>
@@ -107,10 +107,12 @@ if(isset($_POST['update']))
                                 <input type="text" class="form-control" name="name" value="<?php echo $res['name'];?>">
                             </td>
                             <td>
-                                <input type="text" class="form-control" name="email" value="<?php echo $res['email'];?>">
+                                <input type="text" class="form-control" name="email"
+                                    value="<?php echo $res['email'];?>">
                             </td>
                             <td>
-                                <input type="text" class="form-control" name="username" value="<?php echo $res['username'];?>">
+                                <input type="text" class="form-control" name="username"
+                                    value="<?php echo $res['username'];?>">
                             </td>
                             <td>
                                 <select name="role" class="form-control" id="role-selector">
