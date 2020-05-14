@@ -55,7 +55,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th id="name_header">Nombre</th>                        
+                        <th id="name_header">Nombre</th>
                         <th id="action_header">Accion</th>
                     </tr>
                 </thead>
@@ -70,7 +70,8 @@
                             <a href="edit_role.php?id=<?php echo $res[id]?>" class="edit">
                                 <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i>
                             </a>
-                            <a href="delete_role.php?id_role=<?php echo $res[id]?>&name_role=<?php echo $res[name]?>" class="delete">
+                            <a href="delete_role.php?id_role=<?php echo $res[id]?>&name_role=<?php echo $res[name]?>"
+                                class="delete">
                                 <i class="material-icons" data-toggle="tooltip" title="Borrar">&#xE872;</i>
                             </a>
                         </td>
@@ -95,6 +96,28 @@
                         <div class="form-group">
                             <label>Nombre</label>
                             <input type="text" class="form-control" name="name" required>
+                        </div>
+                        <div class="wrap-checkbox">
+                            <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="products" name="products"
+                                    value="active">
+                                <label class="custom-control-label" for="products">Listar y/o agregar productos</label>
+                            </div>
+                            <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="roles" name="roles"
+                                    value="active">
+                                <label class="custom-control-label" for="roles">Listar y/o crear roles</label>
+                            </div>
+                            <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="audit" name="audit"
+                                    value="active">
+                                <label class="custom-control-label" for="audit">Auditar</label>
+                            </div>
+                            <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="users" name="users"
+                                    value="active">
+                                <label class="custom-control-label" for="users">Listar usuarios</label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

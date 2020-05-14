@@ -90,17 +90,21 @@ CREATE TABLE `roles`
   ( 
      `id`   INT (11) NOT NULL auto_increment, 
      `name` VARCHAR (100) NOT NULL, 
+     `permission_products` BIT NOT NULL, 
+     `permission_roles` BIT NOT NULL, 
+     `permission_audit` BIT NOT NULL, 
+     `permission_users` BIT NOT NULL, 
      PRIMARY KEY (`id`) 
   ) 
 engine = innodb; 
 
 INSERT INTO roles 
-            (`name`) 
-VALUES      ( 'administrador' ); 
+            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+VALUES      ( 'administrador',1, 1, 1, 1); 
 
 INSERT INTO roles 
-            (`name`) 
-VALUES      ( 'cliente' ); 
+            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+VALUES      ( 'cliente',1, 1, 0, 0); 
 
 CREATE TABLE `users_roles` 
   ( 

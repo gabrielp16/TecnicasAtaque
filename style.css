@@ -346,8 +346,8 @@ table.table .avatar {
 .custom-checkbox input[type="checkbox"]:checked+label:after {
 	content: '';
 	position: absolute;
-	left: 6px;
-	top: 3px;
+	left: -18px;
+    top: 6px;
 	width: 6px;
 	height: 11px;
 	border: solid #000;

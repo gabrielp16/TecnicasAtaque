@@ -49,10 +49,6 @@
                             <a href='view.php?search=&search_selector=products.name&order_type=id&order=DESC'>Listar y/o
                                 agregar productos</a>
                         </button>
-                        <button class="btn btn-primary btn-lg btn-block login-btn">
-                            <a href='search-list.php?search=&search_selector=products.name&order_type=id&order=DESC'>Buscar
-                                productos</a>
-                        </button>
                         <button class="btn btn-primary btn-lg btn-block login-btn <?php echo $classHide ?>">
                             <a href='roles.php'>Listar y/o crear roles</a>
                         </button>
