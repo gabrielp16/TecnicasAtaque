@@ -28,9 +28,7 @@
             $pass = mysqli_real_escape_string($mysqli, $_POST['pass']);
 
             if($user == "" || $pass == "") {
-                echo "Either username or password field is empty.";
-                echo "<br/>";
-                echo "<a href='login.php'>Go back</a>";
+                include("error_login.php");
             } else {
                 $result = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user' AND pass=md5('$pass')")
                             or die("Could not execute the select query.");

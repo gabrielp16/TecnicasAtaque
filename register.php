@@ -31,7 +31,7 @@
 			if($user == "" || $pass == "" || $name == "" || $email == "" || $role == "") {
 	?>
 
-    
+
     <form id="myModal" name="form1" method="post" action="">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
@@ -56,7 +56,7 @@
     </form>
     <?php
 			} else {
-				mysqli_query($mysqli, "INSERT INTO users (name, email, username, pass, role) VALUES('$name', '$email', '$user', md5('$pass'), '$role')")
+				mysqli_query($mysqli, "INSERT INTO users (name, email, username, pass, role, active) VALUES('$name', '$email', '$user', md5('$pass'), '$role', 1)")
 					or die("No se pudo realizar la operación.");
 	?>
     <form id="myModal" name="form1" method="post" action="">
@@ -108,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <select name="role" class="form-control" id="role-selector">
-                        <?php
+                            <?php
                             while($role = mysqli_fetch_assoc($roles)) {
                                 echo "<option value='".$role['name']."'>".$role['name']."</option>";
                             }

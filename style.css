@@ -384,3 +384,15 @@ table.table .avatar {
     display: block;
     font-size: 12px;
 }
+.products-table .expired{
+	background-color: #ffbaba !important;
+}
+.products-table .expired a.edit {
+    color: #b18500;
+}
+.products-table .soon-expired{
+	background-color: #ffeebd !important;
+}
+.products-table .not-expired{
+	background-color: #fff !important;
+}

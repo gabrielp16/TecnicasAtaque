@@ -16,7 +16,8 @@ if(isset($_POST['update']))
 	
 	$name = $_POST['name'];
 	$qty = $_POST['qty'];
-	$price = $_POST['price'];	
+    $price = $_POST['price'];
+    $expiration_date = $_POST['expiration_date'];	
 	
 	if(empty($name) || empty($qty) || empty($price)) {
 				
@@ -30,9 +31,13 @@ if(isset($_POST['update']))
 		
 		if(empty($price)) {
 			echo "<font color='red'>El campo Precio esta vacio</font><br/>";
-		}		
+        }	
+        
+        if(empty($expiration_date)) {
+			echo "<font color='red'>El campo Fecha de expiracion esta vacio</font><br/>";
+		}	
 	} else {	
-        $result = mysqli_query($mysqli, "UPDATE services SET name='$name', qty='$qty', price='$price' WHERE id=$id");
+        $result = mysqli_query($mysqli, "UPDATE products SET name='$name', qty='$qty', price='$price',expiration_date='$expiration_date' WHERE id=$id");
         
         $description = "Se editó el producto: ".$name;
         $result2 = mysqli_query($mysqli, "INSERT INTO audit_process_tracking (action, date, user_id, description) VALUES('Update service', CURRENT_TIMESTAMP, '$usersId', '$description')");
@@ -43,7 +48,7 @@ if(isset($_POST['update']))
 ?>
 <?php
     $id = $_GET['id'];
-    $result = mysqli_query($mysqli, "SELECT * FROM services WHERE id=$id");
+    $result = mysqli_query($mysqli, "SELECT * FROM products WHERE id=$id");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,6 +97,7 @@ if(isset($_POST['update']))
                             <th id="name_header">Nombre</th>
                             <th id="qty_header">Cantidad</th>
                             <th id="price_header">Precio</th>
+                            <th id="expiration_date_header">Fecha de vencimiento</th>
                             <th id="action_header">Accion</th>
                         </tr>
                     </thead>
@@ -109,6 +115,10 @@ if(isset($_POST['update']))
                             <td>
                                 <input type="text" class="form-control" name="price"
                                     value="<?php echo $res['price'];?>">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="expiration_date"
+                                    value="<?php echo $res['expiration_date'];?>">
                             </td>
                             <td>
                                 <input type="hidden" name="id" value=<?php echo $_GET['id'];?>>

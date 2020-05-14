@@ -8,7 +8,7 @@
 
 <?php
 	include_once("connection.php");
-    $result = mysqli_query($mysqli, "SELECT * FROM services WHERE users_id=".$_SESSION['id']." ORDER BY id DESC");
+    $result = mysqli_query($mysqli, "SELECT * FROM products WHERE users_id=".$_SESSION['id']." ORDER BY id DESC");
     $users = mysqli_query($mysqli, "SELECT * FROM users WHERE id=".$_SESSION['id']." ORDER BY id DESC");    
 
     while($user = mysqli_fetch_assoc($users)) {
@@ -46,14 +46,14 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Lista de servicios</h2>
+                        <h2>Lista de productos</h2>
                     </div>
                     <div class="col-sm-6">
                         <a href="logout.php" class="btn btn-danger">
                             <i class="material-icons">exit_to_app</i> <span>Salir</span>
                         </a>
                         <a href="#addEmployeeModal" data-toggle="modal" class="btn btn-success">
-                            <i class="material-icons">&#xE147;</i> <span>Agregar nuevo elemento</span>
+                            <i class="material-icons">&#xE147;</i> <span>Agregar nuevo producto</span>
                         </a>
                         <a href="index.php" class="btn btn-success">
                             <i class="material-icons">home</i> <span>Inicio</span>
@@ -61,12 +61,13 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover products-table">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
+                        <th>Fecha de vencimiento (YYYY-MM-DD)</th>
                         <th class="<?php echo $classHide ?>">Accion</th>
                     </tr>
                 </thead>
@@ -74,10 +75,33 @@
                     <?php
 						while($res = mysqli_fetch_assoc($result)) {
 					?>
-                    <tr>
+                    <?php
+                        $today = new DateTime();
+                        $today = $today->format('Y-m-d');
+
+                        $expiration_date = new DateTime($res['expiration_date']);
+                        $expiration_date = $expiration_date->format('Y-m-d');
+
+                        $soon = new DateTime();
+                        $soon->add(new DateInterval('P8D'));
+                        $soon = $soon->format('Y-m-d');
+                        
+                        if($expiration_date < $today ){
+                            $state = 'Vencido';
+                            $stateClass = 'expired';
+                        }elseif ($expiration_date <= $soon){
+                            $state = 'Proximo a vencerse';
+                            $stateClass = 'soon-expired';
+                        }else{
+                            $state = 'Al dia';
+                            $stateClass = 'not-expired';
+                        } 
+                    ?>
+                    <tr class="<?php echo $stateClass ?>">
                         <?php echo "<td>".$res['name']."</td>"?>
                         <?php echo "<td>".$res['qty']."</td>"?>
                         <?php echo "<td>".$res['price']."</td>"?>
+                        <?php echo "<td>".$expiration_date.' ( '.$state.' ) '."</td>"?>
 
                         <td class="<?php echo $classHide ?>">
                             <a href="edit.php?id=<?php echo $res[id]?>" class="edit">
@@ -101,7 +125,7 @@
             <div class="modal-content">
                 <form action="add.php" method="post" name="form1">
                     <div class="modal-header">
-                        <h4 class="modal-title">Agregar nuevo elemento</h4>
+                        <h4 class="modal-title">Agregar nuevo producto</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -116,6 +140,10 @@
                         <div class="form-group">
                             <label>Precio</label>
                             <input type="text" class="form-control" name="price" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de vencimiento (YYYY-MM-DD)</label>
+                            <input type="text" class="form-control" name="expiration_date" required>
                         </div>
                     </div>
                     <div class="modal-footer">

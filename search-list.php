@@ -11,7 +11,7 @@
     
     $search = $_GET["search"];
     $search_selector = $_GET["search_selector"];
-    $result = mysqli_query($mysqli, "SELECT services.name AS productName , services.qty, services.price, users.name AS usersName , users.email, users.role FROM services INNER JOIN users ON services.users_id = users.id  WHERE $search_selector LIKE '%$search%'"); 
+    $result = mysqli_query($mysqli, "SELECT products.name AS productName , products.qty, products.price, users.name AS usersName , users.email, users.role FROM products INNER JOIN users ON products.users_id = users.id  WHERE $search_selector LIKE '%$search%'"); 
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>Búsqueda de servicios</h2>
+                        <h2>Búsqueda de prductos</h2>
                     </div>
                     <div class="col-sm-8">
                         <a href="logout.php" class="btn btn-danger">
@@ -51,16 +51,18 @@
                         </a>
                         <form class="form-inline" action="search.php" method="post" name="form1">
                             <div class="input-group">
-                                <input class="form-control" type="search" name="search" placeholder="Buscar" aria-label="Search"> 
+                                <input class="form-control" type="search" name="search" placeholder="Buscar"
+                                    aria-label="Search">
                                 <select name="search-selector" class="form-control" id="search-selector">
-                                    <option value="services.name">Servicio</option>
-                                    <option value="services.qty">Cantidad</option>
-                                    <option value="services.price">Precio</option>
+                                    <option value="products.name">Servicio</option>
+                                    <option value="products.qty">Cantidad</option>
+                                    <option value="products.price">Precio</option>
                                     <option value="users.name">Usuario</option>
                                     <option value="users.email">Correo</option>
                                     <option value="users.role">Rol</option>
-                                </select>                                
-                                <button class="btn btn btn-success my-0" type="submit" name="submit_search">Buscar</button>
+                                </select>
+                                <button class="btn btn btn-success my-0" type="submit"
+                                    name="submit_search">Buscar</button>
                             </div>
                         </form>
                     </div>
