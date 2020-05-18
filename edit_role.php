@@ -13,12 +13,17 @@ if(isset($_POST['update']))
 {	
 	$id = $_POST['id'];	
     $usersId = $_SESSION['id'];
-	$name = $_POST['name'];	
+	$name = $_POST['name'];
 	
 	if(empty($name)) {
         echo "<font color='red'>El campo Nombre esta vacio.</font><br/>";		
-	} else {	
-		$result = mysqli_query($mysqli, "UPDATE roles SET name='$name' WHERE id=$id");
+	} else {
+        if($_POST['products'] == 'active') { $permission_products = 1; } else { $permission_products = 0; }
+        if($_POST['roles'] == 'active') { $permission_roles = 1; } else { $permission_roles = 0; }
+        if($_POST['audit'] == 'active') { $permission_audit = 1; } else { $permission_audit = 0; }
+        if($_POST['users'] == 'active') { $permission_users = 1; } else { $permission_users = 0; }
+
+		$result = mysqli_query($mysqli, "UPDATE roles SET name='$name', products=$permission_products, roles=$permission_roles, audit=$permission_audit, users=$permission_users WHERE id=$id");
 
         $description = "Se editó el rol: ".$name;
         $result2 = mysqli_query($mysqli, "INSERT INTO audit_process_tracking (action, date, user_id, description) VALUES('Update role', CURRENT_TIMESTAMP, '$usersId', '$description')");
@@ -76,7 +81,6 @@ if(isset($_POST['update']))
                     <thead>
                         <tr>
                             <th id="name_header">Nombre</th>
-                            <th id="action_header">Accion</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,6 +91,40 @@ if(isset($_POST['update']))
                             <td>
                                 <input type="text" class="form-control" name="name" value="<?php echo $res['name'];?>">
                             </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="wrap-checkbox">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="products"
+                                            name="products" value="active"
+                                            <?php if($res['products'] == 1){ echo ' checked="checked"'; } ?>>
+                                        <label class="custom-control-label" for="products">Listar y/o agregar
+                                            productos</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="roles" name="roles"
+                                            value="active"
+                                            <?php if($res['roles'] == 1){ echo ' checked="checked"'; } ?>>
+                                        <label class="custom-control-label" for="roles">Listar y/o crear roles</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="audit" name="audit"
+                                            value="active"
+                                            <?php if($res['audit'] == 1){ echo ' checked="checked"'; } ?>>
+                                        <label class="custom-control-label" for="audit">Auditar</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="users" name="users"
+                                            value="active"
+                                            <?php if($res['users'] == 1){ echo ' checked="checked"'; } ?>>
+                                        <label class="custom-control-label" for="users">Listar usuarios</label>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
                             <td>
                                 <input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
                                 <input type="submit" name="update" value="Guardar" class="btn btn-info">
