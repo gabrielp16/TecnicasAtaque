@@ -157,7 +157,7 @@
                             <input type="number" class="form-control" name="price" required>
                         </div>
                         <div class="form-group">
-                            <label>Fecha de vencimiento (YYYY-MM-DD)</label>
+                            <label>Fecha de vencimiento (AAAA-MM-DD)</label>
                             <input type="text" class="form-control" name="expiration_date" required>
                         </div>
                     </div>
