@@ -110,7 +110,7 @@
                         <select name="role" class="form-control" id="role-selector">
                             <?php
                             while($role = mysqli_fetch_assoc($roles)) {
-                                echo "<option value='".$role['name']."'>".$role['name']."</option>";
+                                echo "<option value='".$role['id']."'>".$role['name']."</option>";
                             }
                         ?>
                         </select>

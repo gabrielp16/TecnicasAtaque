@@ -3,6 +3,26 @@ CREATE DATABASE `tecnicas_ataque`;
 
 USE `tecnicas_ataque`; 
 
+CREATE TABLE `roles` 
+  ( 
+     `id`   INT (100) NOT NULL auto_increment, 
+     `name` VARCHAR (100) NOT NULL, 
+     `permission_products` BIT NOT NULL, 
+     `permission_roles` BIT NOT NULL, 
+     `permission_audit` BIT NOT NULL, 
+     `permission_users` BIT NOT NULL, 
+     PRIMARY KEY (`id`) 
+  ) 
+engine = innodb; 
+
+INSERT INTO roles 
+            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+VALUES      ( 'administrador',1, 1, 1, 1); 
+
+INSERT INTO roles 
+            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+VALUES      ( 'cliente',1, 1, 0, 0); 
+
 CREATE TABLE `users` 
   ( 
      `id`       INT (11) NOT NULL auto_increment, 
@@ -10,7 +30,7 @@ CREATE TABLE `users`
      `email`    VARCHAR (100) NOT NULL, 
      `username` VARCHAR (100) NOT NULL, 
      `pass`     VARCHAR (100) NOT NULL, 
-     `role`     VARCHAR (100) NOT NULL, 
+     `role`     INT (11) NOT NULL, 
      `active`   BIT, 
      PRIMARY KEY (`id`) 
   ) 
@@ -27,7 +47,7 @@ VALUES      ( 'Gabriel Pena',
               'gabriel.p16@gmail.com', 
               'gabo', 
               Md5('123'), 
-              'administrador', 
+              1, 
               1 ); 
 
 INSERT INTO users 
@@ -41,7 +61,7 @@ VALUES      ( 'Daniel Perez',
               'daniel@gmail.com', 
               'dani', 
               Md5('123'), 
-              'cliente', 
+              2s, 
               1 ); 
 
 CREATE TABLE `products` 
@@ -85,26 +105,6 @@ VALUES      ( 'Producto 2',
               '2020-10-20',
               'not-expired',
               1 ); 
-
-CREATE TABLE `roles` 
-  ( 
-     `id`   INT (11) NOT NULL auto_increment, 
-     `name` VARCHAR (100) NOT NULL, 
-     `permission_products` BIT NOT NULL, 
-     `permission_roles` BIT NOT NULL, 
-     `permission_audit` BIT NOT NULL, 
-     `permission_users` BIT NOT NULL, 
-     PRIMARY KEY (`id`) 
-  ) 
-engine = innodb; 
-
-INSERT INTO roles 
-            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
-VALUES      ( 'administrador',1, 1, 1, 1); 
-
-INSERT INTO roles 
-            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
-VALUES      ( 'cliente',1, 1, 0, 0); 
 
 CREATE TABLE `users_roles` 
   ( 

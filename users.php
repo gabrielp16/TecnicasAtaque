@@ -8,7 +8,7 @@
 
 <?php
 	include_once("connection.php");
-    $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY name ASC");
+    $result = mysqli_query($mysqli, "SELECT users.*, roles.id AS rolesId, roles.name AS rolesName, roles.products AS permissionProducts, roles.roles AS permissionRoles, roles.audit AS permissionAudit, roles.users AS permissionUsers FROM users INNER JOIN roles ON users.role = roles.id ORDER BY name ASC");
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +82,7 @@
                         <?php echo "<td>".$res['name']."</td>"?>
                         <?php echo "<td>".$res['email']."</td>"?>
                         <?php echo "<td>".$res['username']."</td>"?>
-                        <?php echo "<td>".$res['role']."</td>"?>
+                        <?php echo "<td>".$res['rolesName']."</td>"?>
                         <?php echo "<td>".$status."</td>"?>
 
                         <td class="<?php echo $classHide ?>">

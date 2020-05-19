@@ -118,12 +118,12 @@ if(isset($_POST['update']))
                                 <select name="role" class="form-control" id="role-selector">
                                     <?php
                                         while($role = mysqli_fetch_assoc($roles)) {
-                                            if($res['role'] ==  $role['name']){
+                                            if($res['role'] ==  $role['id']){
                                                 $selected = 'selected';
                                             }else {
                                                 $selected = '';
                                             }
-                                            echo "<option $selected value='".$role['name']."'>".$role['name']."</option>";
+                                            echo "<option $selected value='".$role['id']."'>".$role['name']."</option>";
                                         }
                                     ?>
                                 </select>

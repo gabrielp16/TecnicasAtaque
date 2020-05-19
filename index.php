@@ -18,17 +18,9 @@
     <?php
 	if(isset($_SESSION['valid'])) {			
 		include("connection.php");					
-        $users = mysqli_query($mysqli, "SELECT * FROM users WHERE id=".$_SESSION['id']." ORDER BY id DESC");
+        $users = mysqli_query($mysqli, "SELECT users.name, users.active , roles.* FROM users INNER JOIN roles ON users.role = roles.id WHERE users.id=".$_SESSION['id']);
         
         while($user = mysqli_fetch_assoc($users)) {
-            if ($user['role'] != 'administrador'): 
-                $classHide='hide-class';
-                $user_data=$user;
-            else: 
-                $classHide='show-class';
-                $user_data=$user;
-            endif;
-        }
 	?>
     <form id="myModal" name="form1" method="post" action="">
         <div class="modal-dialog modal-login">
@@ -41,23 +33,34 @@
                     <p class="modal-paragraph">Bienvenido</p>
                 </div>
                 <?php 
-                    if($user_data['active'] == 1){
+                    if($user['active'] == 1){
                 ?>
                 <div class="modal-body">
                     <div class="form-group">
+                        <?php if ( $user['products'] == 1 ){ ?>
                         <button class="btn btn-primary btn-lg btn-block login-btn">
                             <a href='view.php?search=&search_selector=products.name&order_type=id&order=DESC'>Listar y/o
                                 agregar productos</a>
                         </button>
+                        <?php } ?>
+
+                        <?php if ( $user['roles'] == 1 ){ ?>
                         <button class="btn btn-primary btn-lg btn-block login-btn <?php echo $classHide ?>">
                             <a href='roles.php'>Listar y/o crear roles</a>
                         </button>
+                        <?php } ?>
+
+                        <?php if ( $user['audit'] == 1 ){ ?>
                         <button class="btn btn-primary btn-lg btn-block login-btn <?php echo $classHide ?>">
                             <a href='audit-list.php?search=&search_selector=name'>Auditar</a>
                         </button>
+                        <?php } ?>
+
+                        <?php if ( $user['users'] == 1 ){ ?>
                         <button class="btn btn-primary btn-lg btn-block login-btn <?php echo $classHide ?>">
                             <a href='users.php'>Listar usuarios</a>
                         </button>
+                        <?php } ?>
                     </div>
                 </div>
                 <?php 
@@ -73,7 +76,8 @@
             </div>
         </div>
     </form>
-    <?php	
+    <?php
+    }	
 	    } else {
     ?>
     <form id="myModal" name="form1" method="post" action="">
