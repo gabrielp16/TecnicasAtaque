@@ -7,20 +7,20 @@ CREATE TABLE `roles`
   ( 
      `id`   INT (100) NOT NULL auto_increment, 
      `name` VARCHAR (100) NOT NULL, 
-     `permission_products` BIT NOT NULL, 
-     `permission_roles` BIT NOT NULL, 
-     `permission_audit` BIT NOT NULL, 
-     `permission_users` BIT NOT NULL, 
+     `products` BIT NOT NULL, 
+     `roles` BIT NOT NULL, 
+     `audit` BIT NOT NULL, 
+     `users` BIT NOT NULL, 
      PRIMARY KEY (`id`) 
   ) 
 engine = innodb; 
 
 INSERT INTO roles 
-            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+            (`name`,`products`,`roles`,`audit`,`users`) 
 VALUES      ( 'administrador',1, 1, 1, 1); 
 
 INSERT INTO roles 
-            (`name`,`permission_products`,`permission_roles`,`permission_audit`,`permission_users`) 
+            (`name`,`products`,`roles`,`audit`,`users`) 
 VALUES      ( 'cliente',1, 1, 0, 0); 
 
 CREATE TABLE `users` 
